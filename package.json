@@ -1,5 +1,5 @@
 {
-  "name": "with-tailwindcss",
+  "name": "understory-gate",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,6 +12,7 @@
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "slate": "^0.62.0",
     "slate-react": "^0.62.0",
     "swrlit": "^0.14.0"
   },
