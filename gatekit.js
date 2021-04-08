@@ -7,7 +7,7 @@ const UG = {
 }
 
 export const conceptNameToUrlSafeId = (name) =>
-  base58.encode(name)
+  base58.encode(name.toLowerCase())
 
 export const urlSafeIdToConceptName = (id) => {
   return new TextDecoder().decode(base58.decode(id))

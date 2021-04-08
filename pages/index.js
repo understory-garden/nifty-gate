@@ -4,8 +4,8 @@ import NoteBody from '../components/NoteBody'
 import { loadNote } from '../gatekit'
 
 export async function getStaticProps(context) {
-  const conceptPrefix = "https://understory.garden/u/travis.myunderstory.com/default/"
-  const noteUri = "https://travis.myunderstory.com/public/apps/understory/garden/workspace/default/notes/QBqykePzmE9D9p4rmKq3kEDWrocaxL.ttl#concept"
+  const conceptPrefix = "https://understory.garden/u/understory.myunderstory.com/default/"
+  const noteUri = "https://understory.myunderstory.com/public/apps/understory/garden/workspace/default/notes/YsaqBTypPYnvPocUmsTQbCHLLMZogx.ttl#concept"
   const { name, body } = await loadNote(noteUri)
   return {
     props: { conceptPrefix, name, body }, // will be passed to the page component as props
