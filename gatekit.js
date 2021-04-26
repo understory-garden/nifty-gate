@@ -2,8 +2,12 @@ import { useThing } from 'swrlit'
 import { getSolidDataset, getStringNoLocale, getThing } from '@inrupt/solid-client'
 import * as base58 from 'micro-base58'
 
-const UG = {
-  noteBody: "https://understory.coop/vocab/garden#noteBody"
+
+const VOCAB_PREFIX = "https://understory.coop/vocab/garden#"
+export const UG = {
+  noteBody: `${VOCAB_PREFIX}noteBody`,
+  noteUrl: `${VOCAB_PREFIX}noteUrl`,
+  conceptPrefix: `${VOCAB_PREFIX}conceptPrefix`,
 }
 
 export const conceptNameToUrlSafeId = (name) =>
@@ -31,4 +35,14 @@ export async function loadNote(uri){
   const note = getThing(noteResource, uri)
   const body = getStringNoLocale(note, UG.noteBody)
   return { name, body }
+}
+
+export async function loadPublicGnomeConfig(url) {
+  const gnomeConfigResource = await getSolidDataset(url)
+  const gnomeConfigThing = getThing(gnomeConfigResource, url)
+  const gnomeConfig = {
+    url,
+    config: gnomeConfigThing
+  }
+  return gnomeConfig
 }

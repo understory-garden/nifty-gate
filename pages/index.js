@@ -1,12 +1,15 @@
 import Head from 'next/head'
+import { getUrl } from '@inrupt/solid-client'
 
 import NoteBody from '../components/NoteBody'
-import { loadNote } from '../gatekit'
+import { loadNote, loadPublicGnomeConfig, UG } from '../gatekit'
 
 export async function getStaticProps(context) {
-  const conceptPrefix = "https://understory.garden/u/understory.myunderstory.com/default/"
-  const noteUri = "https://understory.myunderstory.com/public/apps/understory/garden/workspace/default/notes/YsaqBTypPYnvPocUmsTQbCHLLMZogx.ttl#concept"
-  const { name, body } = await loadNote(noteUri)
+  const gnomeConfigUrl = process.env.GNOME_CONFIG_URL
+  const { config } = await loadPublicGnomeConfig(gnomeConfigUrl)
+  const conceptPrefix = getUrl(config, UG.conceptPrefix)
+  const noteUrl = getUrl(config, UG.noteUrl)
+  const { name, body } = await loadNote(noteUrl)
   return {
     props: { conceptPrefix, name, body }, // will be passed to the page component as props
     revalidate: 10
