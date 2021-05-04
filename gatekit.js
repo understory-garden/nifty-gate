@@ -1,5 +1,4 @@
-import { useThing } from 'swrlit'
-import { getSolidDataset, getStringNoLocale, getThing } from '@inrupt/solid-client'
+import { getSolidDataset, getStringNoLocale, getThing, getUrl } from '@inrupt/solid-client'
 import * as base58 from 'micro-base58'
 
 
@@ -7,7 +6,10 @@ const VOCAB_PREFIX = "https://understory.coop/vocab/garden#"
 export const UG = {
   noteBody: `${VOCAB_PREFIX}noteBody`,
   noteUrl: `${VOCAB_PREFIX}noteUrl`,
+  usesConcept: `${VOCAB_PREFIX}usesConcept`,
+  usesConceptIndex: `${VOCAB_PREFIX}usesConceptIndex`,
   conceptPrefix: `${VOCAB_PREFIX}conceptPrefix`,
+  storedAt: `${VOCAB_PREFIX}storedAt`,
 }
 
 export const conceptNameToUrlSafeId = (name) =>
@@ -29,12 +31,19 @@ export function tagNameToUrlSafeId(tagName){
   return encodeURIComponent(tagName)
 }
 
-export async function loadNote(uri){
-  const name = noteUriToName(uri)
-  const noteResource = await getSolidDataset(uri)
-  const note = getThing(noteResource, uri)
+export async function loadNote(url){
+  const name = noteUriToName(url)
+  const noteResource = await getSolidDataset(url)
+  const note = getThing(noteResource, url)
   const body = getStringNoLocale(note, UG.noteBody)
   return { name, body }
+}
+
+export async function loadConcept(indexUrl, url){
+  const conceptIndex = await getSolidDataset(indexUrl)
+  const concept = getThing(conceptIndex, url)
+  const noteUrl = getUrl(concept, UG.storedAt)
+  return loadNote(noteUrl)
 }
 
 export async function loadPublicGnomeConfig(url) {
