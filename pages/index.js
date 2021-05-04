@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { getUrl } from '@inrupt/solid-client'
+import { getUrl, getStringNoLocale } from '@inrupt/solid-client'
 
 import NoteBody from '../components/NoteBody'
 import { loadConcept, loadPublicGnomeConfig, UG } from '../gatekit'
@@ -7,7 +7,7 @@ import { loadConcept, loadPublicGnomeConfig, UG } from '../gatekit'
 export async function getStaticProps(context) {
   const gnomeConfigUrl = process.env.GNOME_CONFIG_URL
   const { config } = await loadPublicGnomeConfig(gnomeConfigUrl)
-  const conceptPrefix = getUrl(config, UG.conceptPrefix)
+  const conceptPrefix = getStringNoLocale(config, UG.conceptPrefix)
   const conceptUrl = getUrl(config, UG.usesConcept)
   const conceptIndexUrl = getUrl(config, UG.usesConceptIndex)
   const { name, body } = await loadConcept(conceptIndexUrl, conceptUrl)
