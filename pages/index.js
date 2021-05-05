@@ -19,18 +19,18 @@ export async function getStaticProps(context) {
 
 export default function Home({ conceptPrefix, name, body }) {
   return (
-    <div className="">
+    <>
       <Head>
         <title>{name}</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className="px-20 mt-12 min-h-screen">
-        <h1 className="text-6xl font-bold font-serif mb-12">
+      <main>
+        <h1 className="title">
           {name}
         </h1>
-        <NoteBody json={body} conceptPrefix={conceptPrefix} />
+        <div className="note-body">
+          <NoteBody json={body} conceptPrefix={conceptPrefix} />
+        </div>
       </main>
-    </div>
+    </>
   )
 }

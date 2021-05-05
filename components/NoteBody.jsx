@@ -35,7 +35,7 @@ const Leaf = ({ attributes, children, leaf }) => {
 const Concept = ({ element, children }) => {
   const { conceptPrefix } = useContext(NoteContext)
   return (
-    <a className="concept text-blue-600"
+    <a className="concept"
       href={`${conceptPrefix}${conceptNameToUrlSafeId(element.name)}`}>
       {children}
     </a>
