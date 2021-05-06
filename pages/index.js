@@ -33,13 +33,15 @@ export default function Home({ conceptPrefix, name, body, customCSS, paymentPoin
           <style>{customCSS}</style>
         )}
       </Head>
-      <main className="backdrop-filter backdrop-blur-md">
-        <h1 className="title">
-          {name}
-        </h1>
-        <div className="note-body">
-          <NoteBody json={body} conceptPrefix={conceptPrefix} />
-        </div>
+      <main className="min-h-screen">
+        <section class="content">
+          <h1 className="title">
+            {name}
+          </h1>
+          <div className="note-body">
+            <NoteBody json={body} conceptPrefix={conceptPrefix} />
+          </div>
+        </section>
       </main>
     </>
   )
