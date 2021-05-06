@@ -62,7 +62,7 @@ const Element = (props) => {
     case 'image':
       return (
         <Block element={element}>
-          <img alt={element.alt || ""} src={element.url} style={{ width }} />
+          <img alt={element.alt || ""} src={element.url} style={{ width: element.width }} />
         </Block>
       )
     case 'video':
