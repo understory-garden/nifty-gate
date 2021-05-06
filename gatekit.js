@@ -10,6 +10,8 @@ export const UG = {
   usesConceptIndex: `${VOCAB_PREFIX}usesConceptIndex`,
   conceptPrefix: `${VOCAB_PREFIX}conceptPrefix`,
   storedAt: `${VOCAB_PREFIX}storedAt`,
+  usesCSS: `${VOCAB_PREFIX}usesCSS`,
+  monetizedFor: `${VOCAB_PREFIX}monetizedFor`
 }
 
 export const conceptNameToUrlSafeId = (name) =>
