@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { getUrl, getStringNoLocale } from '@inrupt/solid-client'
 
 import NoteBody from '../components/NoteBody'
-import { loadConcept, loadPublicGnomeConfig, UG } from '../gatekit'
+import { loadConcept, loadPublicGnomeConfig, UG } from 'gatekit'
 import { getPaymentPointer } from '../monetization'
 
 export async function getStaticProps(context) {
