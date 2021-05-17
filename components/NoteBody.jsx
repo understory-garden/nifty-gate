@@ -1,8 +1,9 @@
 import { useCallback, useContext, createContext } from 'react'
 import { createEditor } from 'slate'
 import { Slate, Editable } from 'slate-react';
+import Link from 'next/link'
 
-import { conceptNameToUrlSafeId } from '../gatekit'
+import { conceptNameToUrlSafeId, tagNameToUrlSafeId, getTagNameFromNode } from 'gatekit'
 
 const NoteContext = createContext()
 
@@ -39,6 +40,30 @@ const Concept = ({ element, children }) => {
       href={`${conceptPrefix}${conceptNameToUrlSafeId(element.name)}`}>
       {children}
     </a>
+  )
+}
+
+function ChecklistItemElement({ attributes, children, element }) {
+  const { checked } = element
+  return (
+    <div {...attributes}>
+      <input type="checkbox" class="form-checkbox h-5 w-5 mr-2" checked={!!checked}/>
+      <span className={checked ? `line-through` : ``}>
+        {children}
+      </span>
+    </div>
+  )
+}
+
+function TagElement({ attributes, children, element }) {
+  const { tagPrefix } = useContext(NoteContext)
+  const tagUrl = tagPrefix && `${tagPrefix}${tagNameToUrlSafeId(getTagNameFromNode(element))}`
+  return tagUrl ? (
+    <Link href={tagUrl}>
+      <a className="text-blue-500">{children}</a>
+    </Link>
+  ) : (
+    <span className="text-blue-500">{children}</span>
   )
 }
 
@@ -91,12 +116,12 @@ const Element = (props) => {
   }
 }
 
-export default function NoteBody({ conceptPrefix, json }) {
+export default function NoteBody({ conceptPrefix, tagPrefix, json }) {
   const renderLeaf = useCallback(props => <Leaf {...props} />, [])
   const renderElement = useCallback(props => <Element {...props} />, [])
   const editor = createEditor()
   return (
-    <NoteContext.Provider value={{ conceptPrefix }}>
+    <NoteContext.Provider value={{ conceptPrefix, tagPrefix }}>
       <Slate editor={editor} value={JSON.parse(json)}>
         <Editable
           renderLeaf={renderLeaf}

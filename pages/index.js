@@ -9,6 +9,7 @@ export async function getStaticProps(context) {
   const gnomeConfigUrl = process.env.GNOME_CONFIG_URL
   const { config } = await loadPublicGnomeConfig(gnomeConfigUrl)
   const conceptPrefix = getStringNoLocale(config, UG.conceptPrefix)
+  const tagPrefix = getStringNoLocale(config, UG.tagPrefix)
   const conceptUrl = getUrl(config, UG.usesConcept)
   const conceptIndexUrl = getUrl(config, UG.usesConceptIndex)
   const { name, body } = await loadConcept(conceptIndexUrl, conceptUrl)
@@ -16,12 +17,12 @@ export async function getStaticProps(context) {
   const webId = getUrl(config, UG.monetizedFor)
   const paymentPointer = webId && await getPaymentPointer(webId)
   return {
-    props: { conceptPrefix, name, body, customCSS, paymentPointer }, // will be passed to the page component as props
+    props: { tagPrefix, conceptPrefix, name, body, customCSS, paymentPointer }, // will be passed to the page component as props
     revalidate: 10
   }
 }
 
-export default function Home({ conceptPrefix, name, body, customCSS, paymentPointer }) {
+export default function Home({ tagPrefix, conceptPrefix, name, body, customCSS, paymentPointer }) {
   return (
     <>
       <Head>
@@ -39,7 +40,7 @@ export default function Home({ conceptPrefix, name, body, customCSS, paymentPoin
             {name}
           </h1>
           <div className="note-body">
-            <NoteBody json={body} conceptPrefix={conceptPrefix} />
+            <NoteBody json={body} conceptPrefix={conceptPrefix} tagPrefix={tagPrefix}/>
           </div>
         </section>
       </main>

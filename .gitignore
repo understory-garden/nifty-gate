@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+# yalc
+.yalc
+
 # production
 /build
 
