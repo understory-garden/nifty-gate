@@ -8,6 +8,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "@ethersproject/providers": "^5.4.5",
+    "@openzeppelin/contracts": "^4.3.1",
+    "@web3-react/core": "^6.1.9",
+    "@web3-react/injected-connector": "^6.0.7",
+    "abi-decoder": "^2.4.0",
+    "ether-swr": "^0.6.4",
     "gatekit": "^0.2.0",
     "micro-base58": "^0.5.0",
     "next": "latest",
@@ -15,7 +21,9 @@
     "react-dom": "^17.0.1",
     "slate": "^0.63.0",
     "slate-react": "^0.62.0",
-    "swrlit": "^0.2.0"
+    "swr": "^0.5.6",
+    "swrlit": "^0.2.0",
+    "web3": "^1.5.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.4",
