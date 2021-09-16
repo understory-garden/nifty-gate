@@ -1,6 +1,6 @@
-# Single Page Gate
+# Nifty Gate
 
-This is the default single page Understory Garden Gate. It's a
+This is an Understory Garden Gate designed to showcase NFTs. It's a
 simple [Next.js](https://next.js.org/) application designed be used as
 a showcase for an [Understory Garden](https://understory.garden) note.
 
