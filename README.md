@@ -3,10 +3,6 @@
 This is an Understory Garden Gate designed to showcase NFTs. It's a
 simple [Next.js](https://next.js.org/) application designed be used as
 a showcase for an [Understory Garden](https://understory.garden) note.
-
-Read our [Grant for the Web Final Report](https://community.webmonetization.org/understory/understory-final-grant-report-4ld5) to see how you can deploy and customize
-this Gate on Understory Garden today.
-
 ## Deploy your own
 
 Because this is just a Next.js application, you can run it locally or deploy
